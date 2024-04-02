@@ -1,5 +1,10 @@
 import Image from "next/image";
 
+//  this is the main page of the app.
+//  this is the first page that will be rendered when the app is loaded.
+//  "use client" -> to make this client side component.
+//  Use server component only as long as you have to use client component.
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

@@ -1,3 +1,6 @@
+//  common layout,  all the pages will be wrapped in this layout.
+
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 
