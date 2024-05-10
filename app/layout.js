@@ -1,29 +1,30 @@
-import '@styles/globals.css'
-import Nav from '@components/Nav'
-import Provider from '@components/Provider'
+import "@styles/globals.css";
+import Nav from "@components/Nav";
+import Provider from "@components/Provider";
 
-// For SEO 
+// For SEO
 export const metadata = {
-  title: 'PromptCraft',
-  description: 'Generate and Share prompts with your collegues',
-}
+  title: "PromptCraft",
+  description: "Generate and Share prompts with your collegues",
+};
 
 // this used to wrap all other components.
 
-
-
 export default function RootLayout({ children }) {
- return (
+  return (
     <html lang="en">
       <body>
-        
-        <div className='main'>
-          <div className='gradient'></div>
+        <Provider>
+          <div className="main">
+            <div className="gradient"></div>
+          </div>
 
-        </div>
-       
-        <main className='app'> <Nav/>{children}</main>
+          <main className="app">
+            <Nav />
+            {children}
+          </main>
+        </Provider>
       </body>
     </html>
-  )
+  );
 }
