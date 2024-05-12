@@ -1,5 +1,4 @@
 import { Schema, model, models } from "mongoose";
-import { unique } from "next/dist/build/utils";
 
 const userSchema = new Schema({
   email: {
@@ -16,6 +15,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = models.User || model("User", UserSchema);
+const User = models.User || model("User", userSchema);
 
 export default User;

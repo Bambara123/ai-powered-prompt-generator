@@ -8,9 +8,10 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -21,6 +22,7 @@ const Nav = () => {
         console.error("Failed to fetch providers:");
       }
     };
+
     fetchProviders();
   }, []);
 
@@ -45,7 +47,7 @@ const Nav = () => {
       </div>
 
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Post
@@ -59,7 +61,7 @@ const Nav = () => {
             </button>
             <Link href="/profile">
               <Image
-                src="assets/images/logo.svg"
+                src={session?.user.image} // session?.user.image this checks if session is available, if only then it will return the image.
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -86,7 +88,7 @@ const Nav = () => {
 
       {/* Mobile navigation */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div
             className="flex"
             onClick={() => {
@@ -95,7 +97,7 @@ const Nav = () => {
             }}
           >
             <Image
-              src="assets/images/logo.svg"
+              src={session?.user.image}
               width={37}
               height={37}
               className="rounded-full"

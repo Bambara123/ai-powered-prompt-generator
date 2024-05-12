@@ -1,9 +1,8 @@
-import nextAuth from "next-auth";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
 import { connectToDatabase } from "@utils/database";
-import { User } from "@models/users";
+import User from "@models/users";
 
 console.log({
   clientId: process.env.GOOGLE_ID,
@@ -47,3 +46,5 @@ const handler = NextAuth({
     }
   },
 });
+
+export { handler as GET, handler as POST };
