@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
-import { connectToDatabase } from "@utils/database";
+import connectToDatabase from "@utils/database";
 import User from "@models/users";
 
 console.log({

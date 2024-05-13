@@ -40,12 +40,6 @@ const Nav = () => {
 
       {/* desktop navigation */}
 
-      <div>
-        <button className="h" onClick={() => console.log("hello")}>
-          button
-        </button>
-      </div>
-
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
@@ -54,7 +48,10 @@ const Nav = () => {
             </Link>
             <button
               type="button"
-              onClick={() => console.log("hello")}
+              onClick={() => {
+                signOut();
+                setToggleDropdown(false);
+              }}
               className="outline_btn"
             >
               Sign Out
