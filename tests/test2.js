@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
-import connectToDatabase from "@utils/database"; // i used default export
+import connectToDatabase from "@utils/database";
 import User from "@models/users";
 
 const handler = NextAuth({
@@ -11,14 +11,28 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-
   callbacks: {
+    async session({ session }) {
+      let sessionUser = null;
+      try {
+        sessionUser = await User.findOne({ email: session.user.email });
+      } catch (err) {
+        console.log("this is the error", err);
+      }
+
+      session.user.id = sessionUser._id.toString();
+
+      console.log(session);
+
+      return session;
+    },
+
     async signIn({ profile }) {
       try {
         await connectToDatabase();
 
         // check whether the user already exists in the database
-        const userExists = await User.findOne({ email: profile.email });
+        const userExists = await User.findOne("email", profile.email);
 
         // if not create a entry
         if (!userExists) {
@@ -30,19 +44,11 @@ const handler = NextAuth({
         }
         return true;
       } catch (err) {
-        console.log("Error checking if user exists: ", error.message);
+        console.log(err);
+
         return false;
       }
     },
-  },
-  async session({ session }) {
-    // store the user id from MongoDB to session
-    const sessionUser = await User.findOne({ email: session.user.email });
-    session.user.id = sessionUser._id.toString();
-
-    console.log("session p", session);
-
-    return session;
   },
 });
 

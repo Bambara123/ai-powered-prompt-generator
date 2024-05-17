@@ -5,8 +5,6 @@ let isConnected = false;
 const connectToDatabase = async () => {
   mongoose.set("strictQuery", true);
 
-  console.log("connected");
-
   if (isConnected) {
     console.log("=> using existing database connection");
     return;
@@ -14,7 +12,7 @@ const connectToDatabase = async () => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: "prompt - Share",
+      dbName: "prompt-share",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

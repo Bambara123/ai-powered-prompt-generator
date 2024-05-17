@@ -24,6 +24,10 @@ export default function RootLayout({ children }) {
             {children}
           </main>
         </Provider>
+
+        <div className="w-full mt-5 mb-3">
+          <p className="text-center">This is the footer</p>
+        </div>
       </body>
     </html>
   );

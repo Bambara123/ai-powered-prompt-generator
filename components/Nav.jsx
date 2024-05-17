@@ -13,6 +13,16 @@ const Nav = () => {
 
   const { data: session } = useSession();
 
+  console.log("session", session);
+
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log("session", session);
+  //     // Or if you really need to use alert for debugging:
+  //     // alert(JSON.stringify(session));
+  //   }
+  // }, [session]);
+
   useEffect(() => {
     const fetchProviders = async () => {
       try {
@@ -90,7 +100,6 @@ const Nav = () => {
             className="flex"
             onClick={() => {
               setToggleDropdown(!toggleDropdown);
-              console.log(toggleDropdown);
             }}
           >
             <Image
