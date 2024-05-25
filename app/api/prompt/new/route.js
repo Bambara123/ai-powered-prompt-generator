@@ -4,11 +4,8 @@ import Prompt from "@models/prompt";
 export const POST = async (req, res) => {
   const { user_id, prompt, tags } = await req.json();
 
-  console.log("prompt", prompt, "tags", tags, "user_id", user_id);
-
   try {
     await connectToDatabase();
-    console.log("prompt", prompt, "tags", tags, "user_id", user_id);
 
     const newPrompt = new Prompt({
       creator: user_id,
@@ -24,5 +21,3 @@ export const POST = async (req, res) => {
     return new Response(error.message, { Status: 500 });
   }
 };
-
-// LAMBDA FUNCTION = die once done.

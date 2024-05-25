@@ -11,6 +11,9 @@ const Page = () => {
   const [post, setPost] = useState({ prompt: "", tags: "" });
 
   const router = useRouter();
+  const thename = "helllo";
+
+  // console.log("session jj", session);
   const { data: session } = useSession();
 
   const createPrompt = async (e) => {
@@ -18,7 +21,7 @@ const Page = () => {
     setSubmitting(true);
 
     try {
-      console.log("post", post, "session", session?.user.id);
+      console.log("post", post, "session", session);
       const response = await fetch("api/prompt/new", {
         method: "POST",
         body: JSON.stringify({
